@@ -1,0 +1,32 @@
+
+
+
+from PyQt5.QtWidgets import QApplication,QPushButton,QWidget
+import sys
+
+class myapplication_2(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Window 2")
+        self.resize(450,450)
+        self.button_1 = QPushButton("click to close Window 1",self)
+        self.button_1.clicked.connect(self.valid_click_2)
+    def valid_click_2(self):
+        win_1.close()
+
+class myapplication_1(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Window 1")
+        self.resize(750,750)
+        self.button_1 = QPushButton("click to open Window 2",self)
+        self.button_1.clicked.connect(self.valid_click_1)
+    def valid_click_1(self):
+        print("12")
+        self.win_2 = myapplication_2()
+        self.win_2.show()
+
+app = QApplication(sys.argv)
+win_1 = myapplication_1()
+win_1.show()
+sys.exit(app.exec())
