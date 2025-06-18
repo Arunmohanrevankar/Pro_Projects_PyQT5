@@ -1,0 +1,26 @@
+# Project without Class 
+# Calculating number of clicks and Updating TextEdit
+
+from PyQt5.QtWidgets import QApplication,QPushButton,QWidget,QTextEdit
+import sys
+mul_10 = 0
+mul_25 = 0
+count = 0
+def click_functionality():
+    global count,mul_10,mul_25
+    count+=1
+    mul_10 = count // 10
+    mul_25 = count // 25
+    le.setText(f"You Have Clicked Button {count} Times\n \nSo its a {mul_10} set of 10 Clicks\n \nHence its a {mul_25} set of 25 Cliks")
+
+app = QApplication(sys.argv)
+win= QWidget()
+win.setWindowTitle("My Application")
+win.resize(500,500)
+button = QPushButton("Click Me",win)
+button.setGeometry(10,20,100,30)
+button.clicked.connect(click_functionality)
+le = QTextEdit(win)
+le.setGeometry(10,80,300,300)
+win.show()
+sys.exit(app.exec())
