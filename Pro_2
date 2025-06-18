@@ -1,0 +1,33 @@
+#
+#
+
+from PyQt5.QtWidgets import QApplication, QPushButton, QTextEdit, QWidget
+import sys
+count = 0
+mul_10 = 0
+mul_25 = 0
+
+class myapplication(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Hi Arun")
+        self.resize(500,500)
+        self.button = QPushButton("Click Me",self)
+        self.button.setGeometry(10,20,100,30)
+        self.button.clicked.connect(self.valid_clicks)
+        self.te = QTextEdit(self)
+        self.te.setGeometry(10,80,300,300)
+
+    def valid_clicks(self):
+        global count,mul_10,mul_25
+        count+=1
+        self.te.setText(f"You Have Clicked Button {count} Times\n \nSo its a {mul_10} set of 10 Clicks\n \nHence its a {mul_25} set of 25 Cliks")
+
+if __name__=="__main__":
+    app = QApplication(sys.argv)
+    win = myapplication()
+    win.show()
+    sys.exit(app.exec())
+
+
+
