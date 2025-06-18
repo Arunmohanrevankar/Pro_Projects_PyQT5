@@ -1,5 +1,7 @@
-
-
+# Project with Class 
+# 2 window application 
+# By Default open Window 1 and click push button to open Window 2 
+# In Window 2 Click Push button to close window 1
 
 from PyQt5.QtWidgets import QApplication,QPushButton,QWidget
 import sys
