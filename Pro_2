@@ -1,5 +1,5 @@
-#
-#
+# Project with Class 
+# Calculating number of clicks and Updating TextEdit
 
 from PyQt5.QtWidgets import QApplication, QPushButton, QTextEdit, QWidget
 import sys
