@@ -1,0 +1,26 @@
+#connect to database
+#display database table details
+
+import json ,psycopg2
+with open("D:\\AMR\\db_config.json",'r') as file:
+    details = json.load(file)
+    # print(details)
+try:
+    connection = psycopg2.connect(
+        database='dbname',
+        user='postgres',
+        password='password',
+        host=details['host'],
+        port=details['port']
+    )
+    cur = connection.cursor()
+    sql='''select * from table1'''
+    cur.execute(sql)
+    record = cur.fetchall()
+    print(record)
+except Exception as Error:
+    print(f"am-failed to connect db{Error}")
+finally:
+    if connection:
+        cur.close()
+        connection.close()
