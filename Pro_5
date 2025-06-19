@@ -1,0 +1,6 @@
+# Read json File form any location
+
+import json
+with open ("C:\\json\\test.json",'r') as file:
+    details = json.load(file)
+    print(details)
