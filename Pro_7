@@ -1,5 +1,5 @@
-#
-#
+#connect to database
+#Update database table details and display the updated changes
 
 import json,psycopg2
 with open ("C:\\json\\test.json","r") as file:
@@ -14,7 +14,7 @@ try:
     )
     cur = connection.cursor()
     sql_1 = '''update table1 set table1.column2=%s , table1.column3=%s where table1.column1=%s'''
-    data = ("pc8","pc8",20)
+    data = ("t1","t1",20)
     cur.execute(sql_1,data)
     sql_2 = '''select * from table2'''
     cur.execute(sql_2)
