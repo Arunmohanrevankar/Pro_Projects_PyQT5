@@ -1,5 +1,6 @@
-#
-#
+#connect to database
+#insert new record to database table and display the new records
+
 import json,psycopg2
 with open ("C:\\json\\test.json","r") as file:
     details = json.load(file)
