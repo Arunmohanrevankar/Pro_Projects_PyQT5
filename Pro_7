@@ -1,0 +1,30 @@
+#
+#
+
+import json,psycopg2
+with open ("C:\\json\\test.json","r") as file:
+    details = json.load(file)
+try:
+    connection = psycopg2.connect(
+        database='databasename',
+        password='password',
+        user = 'postgres',
+        host = details['host'],
+        port = details['port']
+    )
+    cur = connection.cursor()
+    sql_1 = '''update table1 set table1.column2=%s , table1.column3=%s where table1.column1=%s'''
+    data = ("pc8","pc8",20)
+    cur.execute(sql_1,data)
+    sql_2 = '''select * from table2'''
+    cur.execute(sql_2)
+    record = cur.fetchall()
+    print(record)
+except Exception as Error:
+    print(f"Failed to connect DB{Error}")
+finally:
+    if connection:
+        connection.commit()
+        cur.close()
+        connection.close()
+
