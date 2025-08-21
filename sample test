@@ -5,7 +5,7 @@ from two import Ui_lg
 
 class Ui_wlc(object):
     def setupUi(self, wlc):
-        self.wlc = wlc
+        self.wlc = wlc                                                     #imp line
         wlc.setObjectName("wlc")
         wlc.resize(200, 63)
 
@@ -38,11 +38,11 @@ from PyQt5 import QtCore, QtWidgets
 from three import Ui_MainWindow
 
 class Ui_lg(object):
-    def __init__(self, wlc_ref=None):
-        self.wlc_ref = wlc_ref  # Reference to Welcome
+    def __init__(self, wlc_ref=None):                             #imp line
+        self.wlc_ref = wlc_ref  # Reference to Welcome            #imp line
 
     def setupUi(self, lg):
-        self.lg = lg
+        self.lg = lg                                              #imp line
         lg.setObjectName("lg")
         lg.resize(400, 150)
 
@@ -61,9 +61,9 @@ class Ui_lg(object):
         self.main_window.show()
 
         # Close both Welcome and Login windows
-        if self.wlc_ref:
-            self.wlc_ref.close()
-        self.lg.close()
+        if self.wlc_ref:                                    #imp line
+            self.wlc_ref.close()                            #imp line
+        self.lg.close()                                     #imp line
 
 #three.py
 from PyQt5 import QtCore, QtWidgets
