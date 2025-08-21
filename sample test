@@ -1,1 +1,88 @@
-f
+
+#one.py
+from PyQt5 import QtCore, QtWidgets
+from two import Ui_lg
+
+class Ui_wlc(object):
+    def setupUi(self, wlc):
+        self.wlc = wlc
+        wlc.setObjectName("wlc")
+        wlc.resize(200, 63)
+
+        self.pushButton_1 = QtWidgets.QPushButton(wlc)
+        self.pushButton_1.setGeometry(QtCore.QRect(50, 20, 100, 23))
+        self.pushButton_1.setText("Click to Open")
+        self.pushButton_1.clicked.connect(self.open_login)
+
+        wlc.setWindowTitle("Welcome")
+
+    def open_login(self):
+        print("Hi 1")
+        self.lg = QtWidgets.QWidget()
+        self.ui_lg = Ui_lg(self.wlc)  # Pass reference to Welcome
+        self.ui_lg.setupUi(self.lg)
+        self.lg.show()
+        self.wlc.close()
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    wlc = QtWidgets.QWidget()
+    ui = Ui_wlc()
+    ui.setupUi(wlc)
+    wlc.show()
+    sys.exit(app.exec_())
+
+#two.py
+from PyQt5 import QtCore, QtWidgets
+from three import Ui_MainWindow
+
+class Ui_lg(object):
+    def __init__(self, wlc_ref=None):
+        self.wlc_ref = wlc_ref  # Reference to Welcome
+
+    def setupUi(self, lg):
+        self.lg = lg
+        lg.setObjectName("lg")
+        lg.resize(400, 150)
+
+        self.pushButton_1 = QtWidgets.QPushButton(lg)
+        self.pushButton_1.setGeometry(QtCore.QRect(70, 50, 261, 23))
+        self.pushButton_1.setText("Click To Open")
+        self.pushButton_1.clicked.connect(self.open_main_window)
+
+        lg.setWindowTitle("Login")
+
+    def open_main_window(self):
+        print("Hi 2")
+        self.main_window = QtWidgets.QMainWindow()
+        self.ui_main = Ui_MainWindow()
+        self.ui_main.setupUi(self.main_window)
+        self.main_window.show()
+
+        # Close both Welcome and Login windows
+        if self.wlc_ref:
+            self.wlc_ref.close()
+        self.lg.close()
+
+#three.py
+from PyQt5 import QtCore, QtWidgets
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(800, 600)
+
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menuhelp = QtWidgets.QMenu(self.menubar)
+        self.menuhelp.setTitle("help")
+        self.menubar.addAction(self.menuhelp.menuAction())
+        MainWindow.setMenuBar(self.menubar)
+
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        MainWindow.setStatusBar(self.statusbar)
+
+        MainWindow.setWindowTitle("MainWindow")
