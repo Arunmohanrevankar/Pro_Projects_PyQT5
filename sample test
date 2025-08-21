@@ -1,28 +1,38 @@
+#code1.py
+from PyQt5 import QtCore, QtGui, QtWidgets
+from p2 import *
 
-#one.py
-from PyQt5 import QtCore, QtWidgets
-from two import Ui_lg
 
 class Ui_wlc(object):
     def setupUi(self, wlc):
-        self.wlc = wlc                                                     #imp line
+        self.wlc = wlc
         wlc.setObjectName("wlc")
-        wlc.resize(200, 63)
-
+        wlc.resize(400, 300)
+        self.listWidget_1 = QtWidgets.QListWidget(wlc)
+        self.listWidget_1.setGeometry(QtCore.QRect(80, 50, 250, 200))
+        self.listWidget_1.setObjectName("listWidget_1")
         self.pushButton_1 = QtWidgets.QPushButton(wlc)
-        self.pushButton_1.setGeometry(QtCore.QRect(50, 20, 100, 23))
-        self.pushButton_1.setText("Click to Open")
-        self.pushButton_1.clicked.connect(self.open_login)
+        self.pushButton_1.setGeometry(QtCore.QRect(80, 20, 250, 25))
+        self.pushButton_1.setObjectName("pushButton_1")
+        self.pushButton_1.clicked.connect(self.op1)
 
-        wlc.setWindowTitle("Welcome")
+        self.retranslateUi(wlc)
+        QtCore.QMetaObject.connectSlotsByName(wlc)
 
-    def open_login(self):
-        print("Hi 1")
-        self.lg = QtWidgets.QWidget()
-        self.ui_lg = Ui_lg(self.wlc)  # Pass reference to Welcome
-        self.ui_lg.setupUi(self.lg)
-        self.lg.show()
-        self.wlc.close()
+    def retranslateUi(self, wlc):
+        _translate = QtCore.QCoreApplication.translate
+        wlc.setWindowTitle(_translate("wlc", "Form"))
+        self.pushButton_1.setText(_translate("wlc", "List Database"))
+
+   
+    def op1(self):
+        print("Hi1")
+        self.lgn = QtWidgets.QWidget()
+        self.ui = Ui_lgn(self.wlc)  # Pass reference to wlc
+        self.ui.setupUi(self.lgn)
+        self.lgn.show()
+ 
+
 
 if __name__ == "__main__":
     import sys
@@ -33,56 +43,91 @@ if __name__ == "__main__":
     wlc.show()
     sys.exit(app.exec_())
 
-#two.py
-from PyQt5 import QtCore, QtWidgets
-from three import Ui_MainWindow
+#code2.py
+from p3 import *
+from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_lg(object):
-    def __init__(self, wlc_ref=None):                             #imp line
-        self.wlc_ref = wlc_ref  # Reference to Welcome            #imp line
 
-    def setupUi(self, lg):
-        self.lg = lg                                              #imp line
-        lg.setObjectName("lg")
-        lg.resize(400, 150)
+class Ui_lgn(object):
+    def __init__(self, wlc_ref=None):
+        self.wlc_ref = wlc_ref  # Reference to Welcome
 
-        self.pushButton_1 = QtWidgets.QPushButton(lg)
-        self.pushButton_1.setGeometry(QtCore.QRect(70, 50, 261, 23))
-        self.pushButton_1.setText("Click To Open")
-        self.pushButton_1.clicked.connect(self.open_main_window)
+        
+    def setupUi(self, lgn):
+        lgn.setObjectName("lgn")
+        lgn.resize(223, 156)
+        self.lgn = lgn
+        self.lineEdit_1 = QtWidgets.QLineEdit(lgn)
+        self.lineEdit_1.setGeometry(QtCore.QRect(20, 28, 180, 25))
+        self.lineEdit_1.setObjectName("lineEdit_1")
+        self.lineEdit_2 = QtWidgets.QLineEdit(lgn)
+        self.lineEdit_2.setGeometry(QtCore.QRect(20, 54, 180, 25))
+        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.NoEcho)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.pushButton_1 = QtWidgets.QPushButton(lgn)
+        self.pushButton_1.setGeometry(QtCore.QRect(20, 80, 180, 25))
+        self.pushButton_1.setObjectName("pushButton_1")
+        self.pushButton_1.clicked.connect(self.op2)
 
-        lg.setWindowTitle("Login")
+        self.retranslateUi(lgn)
+        QtCore.QMetaObject.connectSlotsByName(lgn)
 
-    def open_main_window(self):
-        print("Hi 2")
-        self.main_window = QtWidgets.QMainWindow()
-        self.ui_main = Ui_MainWindow()
-        self.ui_main.setupUi(self.main_window)
-        self.main_window.show()
+    def retranslateUi(self, lgn):
+        _translate = QtCore.QCoreApplication.translate
+        lgn.setWindowTitle(_translate("lgn", "Form"))
+        self.lineEdit_1.setPlaceholderText(_translate("lgn", "User Name"))
+        self.lineEdit_2.setPlaceholderText(_translate("lgn", "Password"))
+        self.pushButton_1.setText(_translate("lgn", "Submit"))
+
+    def op2(self):
+        print("Hi2")
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.MainWindow)
+        self.MainWindow.show()
+
 
         # Close both Welcome and Login windows
-        if self.wlc_ref:                                    #imp line
-            self.wlc_ref.close()                            #imp line
-        self.lg.close()                                     #imp line
+        if self.wlc_ref:
+            self.wlc_ref.close()
+        self.lgn.close()
 
-#three.py
-from PyQt5 import QtCore, QtWidgets
+
+
+#code3.py
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
-
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
         MainWindow.setCentralWidget(self.centralwidget)
-
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menuhelp = QtWidgets.QMenu(self.menubar)
-        self.menuhelp.setTitle("help")
-        self.menubar.addAction(self.menuhelp.menuAction())
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        self.menuHelp = QtWidgets.QMenu(self.menubar)
+        self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
-
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionAbout = QtWidgets.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
+        self.menuHelp.addAction(self.actionAbout)
+        self.menubar.addAction(self.menuHelp.menuAction())
 
-        MainWindow.setWindowTitle("MainWindow")
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.menuHelp.setTitle(_translate("MainWindow", "Help"))
+        self.actionAbout.setText(_translate("MainWindow", "About"))
+
+
+
